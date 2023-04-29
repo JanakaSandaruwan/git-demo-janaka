@@ -1,7 +1,7 @@
 # Use an official Node.js runtime as a parent image
 FROM node:14-alpine
 
-RUN useradd -r -u 1001 -g appuser appuser
+RUN useradd -r -u 10001 -g appuser appuser
 USER appuser
 
 # Set the working directory to /app
