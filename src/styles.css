@@ -1,0 +1,68 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: #004ba0;
+  color: #fff;
+  padding: 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 36px;
+}
+
+nav {
+  background-color: #f2f2f2;
+  padding: 10px;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  cursor: pointer;
+}
+
+nav li {
+  margin-right: 20px;
+}
+
+nav a {
+  color: #004ba0;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+nav a:hover {
+  color: #fff;
+  background-color: #004ba0;
+}
+
+.team-photo {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.team-photo img {
+  max-width: 100%;
+}
+
+.squad {
+  width: 30%;
+  float: left;
+}
+
+.squad ul {
+  margin: 0;
+  padding: 1;
+}
+
+.li {
+  cursor: pointer;
+}
