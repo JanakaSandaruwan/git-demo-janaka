@@ -1,8 +1,16 @@
 # Use an official Node.js runtime as a parent image
 FROM node:14-alpine
 
+RUN addgroup -g 10014 myuser && \
+    adduser -u 10014 -G myuser -s /bin/sh -D myuser
+
 # Set the working directory to /app
 WORKDIR /app
+
+RUN chown -R myuser:myuser /app
+
+# Switch to the newly created user
+USER myuser
 
 # Copy package.json and package-lock.json to the container
 COPY package*.json ./
