@@ -1,30 +1,25 @@
 # Use an official Node.js runtime as a parent image
 FROM node:14-alpine
+FROM node:14-alpine
 
-# RUN useradd -r -u 10001 -g appuser appuser
-USER 10001
+# Create a new user with UID 10014 and add it to the 'users' group
+RUN addgroup -g 10014 myuser && \
+    adduser -u 10014 -G myuser -s /bin/sh -D myuser
 
-# Set the working directory to /app
+# Set the working directory to /app and change the owner to the newly created user
 WORKDIR /app
+RUN chown -R myuser:myuser /app
 
-# Copy package.json and package-lock.json to the container
-COPY package*.json ./
+# Switch to the newly created user
+USER 10014
 
-# Install dependencies
-RUN npm install --production
-
-# Copy the rest of the application code to the container
+# Copy the application code to the container
 COPY . .
 
-# Build the React application
-RUN npm run build
+# Install the application's dependencies
+RUN npm install
 
-# Serve the build with a lightweight HTTP server
-FROM node:14-alpine
-WORKDIR /app
-COPY --from=0 /app/build ./build
-RUN npm install -g serve
+# Start the application
+CMD ["npm", "start"]
 
-# Set the command to run the server
-CMD ["serve", "-s", "build"]
 EXPOSE 3000
