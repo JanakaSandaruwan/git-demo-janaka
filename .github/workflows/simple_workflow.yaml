@@ -1,0 +1,20 @@
+name: Simple Workflow
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      with:
+        repository: jogendra/example-ios-apps
+        token: ${{ secrets.APP_GH_TOKEN }}
+
+    - name: Run Simple Task
+      run: echo "Hello, this is a simple workflow task!"
