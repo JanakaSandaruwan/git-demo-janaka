@@ -12,11 +12,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:
+      ENV_MAPS:  ${{ github.event.inputs.otherInputs }}
     steps:
     - name: Run Simple Task
       run: |-
         echo "Hello, this is a simple workflow task!"
         echo  ${{ github.event.inputs.versionId }}
-        echo  ${{ fromJSON(github.event.inputs.otherInputs) }}
+        echo  ${{ fromJSON(env.ENV_MAPS) }}
         
