@@ -19,5 +19,5 @@ jobs:
       run: |-
         echo "Hello, this is a simple workflow task!"
         echo  ${{ github.event.inputs.versionId }}
-        echo  ${{ fromJSON(env.ENV_MAPS) }}
+        echo  ${{ fromJSON(env.ENV_MAPS).var1 }}
         
