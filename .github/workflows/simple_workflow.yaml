@@ -6,7 +6,9 @@ on:
       versionId:
         description: App version ID
         required: true
-
+      otherInputs:
+        description: all
+        required: true
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,3 +18,5 @@ jobs:
       run: |-
         echo "Hello, this is a simple workflow task!"
         echo  ${{ github.event.inputs.versionId }}
+        echo  ${{ fromJSON(github.event.inputs.otherInputs) }}
+        
