@@ -19,7 +19,7 @@ jobs:
       run: |-
         echo "Hello, this is a simple workflow task!"
         echo  ${{ github.event.inputs.versionId }}
-        echo  ${{ fromJSON(env.ENV_MAPS).var1 }}
+        echo  ${{ fromJSON(env.ENV_MAPS)[0] }}
         echo "Extracting key-value pairs:"
         IFS=',' read -ra KV_PAIRS <<< "${ENV_MAPS}"
         for pair in "${KV_PAIRS[@]}"; do
