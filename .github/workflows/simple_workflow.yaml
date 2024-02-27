@@ -18,9 +18,8 @@ jobs:
     - name: Run Simple Task
       run: |-
         echo "Hello, this is a simple workflow task!"
-        echo  MY_MAP=${{ fromJSON(env.ENV_MAPS) }}
-        echo  ${{ fromJSON($MY_MAP) }}
-        echo  $ {{ $MY_MAP.other.janaka }}
+        echo  ${{ fromJSON(env.ENV_MAPS) }}
+        echo  $ {{ fromJSON(env.ENV_MAPS).other.janaka }}
         echo  ${{ github.event.inputs.versionId }}
         echo  ${{ fromJSON(env.ENV_MAPS)[0] }}
         echo  ${{ fromJSON(env.ENV_MAPS)[0].key }}
