@@ -25,6 +25,9 @@ jobs:
         echo  ${{ fromJSON(env.ENV_MAPS).other.janaka }}
         echo  ${{ github.event.inputs.versionId }}
         echo "Extracting key-value pairs:"
-        for pack in ${{ fromJSON(env.ENV_MAPS).packs }}; do
-          echo $pack
+        for item in $(echo "$MY_MAP" | jq -c '.packs[]'); do
+            key=$(echo "$item" | jq -r '.key')
+            value=$(echo "$item" | jq -r '.value')
+            echo "Key: $key, Value: $value"
         done
+        
