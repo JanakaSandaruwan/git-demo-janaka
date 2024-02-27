@@ -17,6 +17,8 @@ jobs:
     steps:
     - name: Run Simple Task
       run: |-
+        apt update
+        sudo apt install -y jq
         echo "Hello, this is a simple workflow task!"
         echo  ${{ fromJSON(env.ENV_MAPS) }}
         MY_MAP=${{ fromJSON(env.ENV_MAPS) }}
