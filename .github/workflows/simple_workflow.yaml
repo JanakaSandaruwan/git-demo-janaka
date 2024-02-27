@@ -19,7 +19,7 @@ jobs:
       run: |-
         echo "Hello, this is a simple workflow task!"
         echo  MY_MAP=${{ fromJSON(env.ENV_MAPS) }} >> $GITHUB_ENV
-        echo  $ {{ env.ENV_MAPS }}
+        echo  ${{ env.ENV_MAPS }}
         echo  ${{ github.event.inputs.versionId }}
         echo  ${{ fromJSON(env.ENV_MAPS)[0] }}
         echo  ${{ fromJSON(env.ENV_MAPS)[0].key }}
