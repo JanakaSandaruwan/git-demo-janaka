@@ -20,6 +20,11 @@ jobs:
         echo "Hello, this is a simple workflow task!"
         echo  ${{ fromJSON(env.ENV_MAPS) }}
         MY_MAP=${{ fromJSON(env.ENV_MAPS) }}
-        echo ${MY_MAP}.other.janaka
         echo  ${{ fromJSON(env.ENV_MAPS).other.janaka }}
-        echo  ${{ github.event.inputs.versionId }}  
+        echo  ${{ github.event.inputs.versionId }}
+        echo "Extracting key-value pairs:"
+        IFS=',' read -ra KV_PAIRS <<< "${ENV_MAPS}"
+        for pair in "${KV_PAIRS[@]}"; do
+          IFS='=' read -r key value <<< "${pair}"
+          echo "Key: ${key}, Value: ${value}"
+        done
