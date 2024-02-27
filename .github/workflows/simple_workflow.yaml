@@ -17,17 +17,19 @@ jobs:
     steps:
     - name: Run Simple Task
       run: |-
-        sudo apt update
-        sudo apt install -y jq
-        echo "Hello, this is a simple workflow task!"
-        echo  ${{ fromJSON(env.ENV_MAPS) }}
-        MY_MAP=${{ fromJSON(env.ENV_MAPS) }}
-        echo  ${{ fromJSON(env.ENV_MAPS).other.janaka }}
-        echo  ${{ github.event.inputs.versionId }}
-        echo "Extracting key-value pairs:"
-        for item in ${{ fromJSON(env.ENV_MAPS) | jq -c '.packs[]'}}; do
+         echo "Hello, this is a simple workflow task!"
+
+         # Decode base64-encoded string
+         DECODED_INPUTS=$(echo "$ENV_MAPS" | base64 --decode)
+
+         # Print decoded inputs
+         echo "Decoded inputs: $DECODED_INPUTS"
+
+         # Extract and iterate over packs
+         echo "Packs:"
+         for item in $(echo "$DECODED_INPUTS" | jq -c '.packs[]'); do
             key=$(echo "$item" | jq -r '.key')
             value=$(echo "$item" | jq -r '.value')
             echo "Key: $key, Value: $value"
-        done
+         done
         
