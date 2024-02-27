@@ -18,6 +18,8 @@ jobs:
     - name: Run Simple Task
       run: |-
         echo "Hello, this is a simple workflow task!"
+        echo  MY_MAP=${{ fromJSON(env.ENV_MAPS) }} >> $GITHUB_ENV
+        echo  env.MY_MAP
         echo  ${{ github.event.inputs.versionId }}
         echo  ${{ fromJSON(env.ENV_MAPS)[0] }}
         echo  ${{ fromJSON(env.ENV_MAPS)[0].key }}
@@ -29,5 +31,4 @@ jobs:
           IFS='=' read -r key value <<< "${pair}"
           echo "Key: ${key}, Value: ${value}"
         done
-        
         
